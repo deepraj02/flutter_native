@@ -1,29 +1,24 @@
 import 'package:args/command_runner.dart';
 import 'package:mason_logger/mason_logger.dart';
 
-/// {@template sample_command}
-///
-/// `fnative sample`
-/// A [Command] to exemplify a sub command
-/// {@endtemplate}
-class SampleCommand extends Command<int> {
-  /// {@macro sample_command}
-  SampleCommand({
+class IOSCommands extends Command<int> {
+  IOSCommands({
     required Logger logger,
   }) : _logger = logger {
     argParser.addFlag(
-      'cyan',
+      'green',
       abbr: 'c',
-      help: 'Prints the same joke, but in cyan',
+      help: 'Prints the same joke, but in green',
       negatable: false,
     );
   }
 
   @override
-  String get description => 'A sample sub command that just prints one joke';
+  String get description =>
+      'Command to enable feature Modification for iOS Platfrorm';
 
   @override
-  String get name => 'sample';
+  String get name => 'ios'; // fnative <sample>
 
   final Logger _logger;
 
@@ -31,7 +26,7 @@ class SampleCommand extends Command<int> {
   Future<int> run() async {
     var output = 'Which unicorn has a cold? The Achoo-nicorn!';
     if (argResults?['cyan'] == true) {
-      output = lightCyan.wrap(output)!;
+      output = green.wrap(output)!;
     }
     _logger.info(output);
     return ExitCode.success.code;

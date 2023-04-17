@@ -40,7 +40,8 @@ class FlutterNativeCommandRunner extends CompletionCommandRunner<int> {
       );
 
     // Add sub commands
-    addCommand(SampleCommand(logger: _logger));
+    addCommand(AndroidCommands(logger: _logger));
+    addCommand(IOSCommands(logger: _logger));
     addCommand(UpdateCommand(logger: _logger, pubUpdater: _pubUpdater));
   }
 
