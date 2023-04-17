@@ -1,6 +1,9 @@
 name: flutter_native
 description: A CLI making it easy to modify android files to access permissions
 version: 0.0.1
+maintainer: Deepraj Baidya <@deepraj02>
+repository: https://github.com/deepraj02/flutter_native
+issue_tracker: https://github.com/deepraj02/flutter_native/issues
 
 
 environment:
