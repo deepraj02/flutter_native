@@ -1,14 +1,12 @@
+import 'dart:io';
+
 import 'package:args/command_runner.dart';
-import 'package:mason_logger/mason_logger.dart';
 
 class AndroidCommands extends Command<int> {
-  AndroidCommands({
-    required Logger logger,
-  }) : _logger = logger {
+  AndroidCommands() {
     argParser.addFlag(
-      'cyan',
-      abbr: 'c',
-      help: 'Prints the same joke, but in cyan',
+      'enable-camera',
+      help: 'Enables the Camera Permission',
       negatable: false,
     );
   }
@@ -20,15 +18,34 @@ class AndroidCommands extends Command<int> {
   @override
   String get name => 'android'; // fnative <sample>
 
-  final Logger _logger;
+  Future<void> enableCameraPermission() async {
+    // Locate the AndroidManifest.xml file
+    const androidManifestPath = 'android/app/src/main/AndroidManifest.xml';
+    final manifestFile = File(androidManifestPath);
 
-  @override
-  Future<int> run() async {
-    var output = 'Which unicorn has a cold? The Achoo-nicorn!';
-    if (argResults?['cyan'] == true) {
-      output = lightCyan.wrap(output)!;
+    if (!manifestFile.existsSync()) {
+      stdout.write('Error: AndroidManifest.xml not found.');
+      return;
     }
-    _logger.info(output);
-    return ExitCode.success.code;
+
+    // Read the contents of the AndroidManifest.xml file
+    final manifestContent = await manifestFile.readAsString();
+
+    // Check if the camera permission is already added
+    if (manifestContent.contains(
+      '<uses-permission android:name="android.permission.CAMERA" />',
+    )) {
+      stdout.write('Camera permission is already added.');
+      return;
+    }
+
+    // Add the camera permission
+    final updatedManifestContent = manifestContent.replaceFirst(
+      '<application',
+      '<uses-permission android:name="android.permission.CAMERA" />\n<application',
+    );
+    await manifestFile.writeAsString(updatedManifestContent);
+
+    stdout.write('Camera permission added successfully.');
   }
 }

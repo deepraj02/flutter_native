@@ -25,3 +25,4 @@ dev_dependencies:
 
 executables:
   fnative:
+    -bin/fnative.dart
