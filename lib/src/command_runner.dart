@@ -1,6 +1,7 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_completion/cli_completion.dart';
+
 import 'package:flutter_native/src/commands/commands.dart';
 import 'package:flutter_native/src/version.dart';
 import 'package:mason_logger/mason_logger.dart';
@@ -41,6 +42,7 @@ class FlutterNativeCommandRunner extends CompletionCommandRunner<int> {
 
     // Add sub commands
     addCommand(AndroidCommands());
+    //addCommand(AndroidLocationCommands());
     addCommand(IOSCommands(logger: _logger));
     addCommand(UpdateCommand(logger: _logger, pubUpdater: _pubUpdater));
   }
