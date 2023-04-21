@@ -9,18 +9,11 @@ import 'package:pub_updater/pub_updater.dart';
 
 const executableName = 'fnative';
 const packageName = 'flutter_native';
-const description =
-    'A CLI making it easy to modify android files to access permissions';
+const description = '''
+Flutter_native: The ultimate CLI tool for modifying app permissions and 
+    enabling native features on Android and iOS 😉''';
 
-/// {@template flutter_native_command_runner}
-/// A [CommandRunner] for the CLI.
-///
-/// ```
-/// $ fnative --version
-/// ```
-/// {@endtemplate}
 class FlutterNativeCommandRunner extends CompletionCommandRunner<int> {
-  /// {@macro flutter_native_command_runner}
   FlutterNativeCommandRunner({
     Logger? logger,
     PubUpdater? pubUpdater,
@@ -43,8 +36,6 @@ class FlutterNativeCommandRunner extends CompletionCommandRunner<int> {
     // Add sub commands
     addCommand(AndroidCommands());
 
-    //addCommand(AndroidLocationCommands());
-    addCommand(IOSCommands(logger: _logger));
     addCommand(UpdateCommand(logger: _logger, pubUpdater: _pubUpdater));
   }
 
@@ -128,9 +119,6 @@ class FlutterNativeCommandRunner extends CompletionCommandRunner<int> {
     return exitCode;
   }
 
-  /// Checks if the current version (set by the build runner on the
-  /// version.dart file) is the most recent one. If not, show a prompt to the
-  /// user.
   Future<void> _checkForUpdates() async {
     try {
       final latestVersion = await _pubUpdater.getLatestVersion(packageName);
