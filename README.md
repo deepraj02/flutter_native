@@ -1,6 +1,6 @@
 <img src="https://user-images.githubusercontent.com/63138398/233612906-569a56e5-e7de-45c3-bd1d-52cf3e786b4d.png" alt="Button Preview" > 
 
-  <h1 align="left">flutter_native</h1>
+  <h1 align="left">flutter_native </h1>
 <!-- <p>
   <a href="https://github.com/deepraj02/flutter_native">
     <img src="https://user-images.githubusercontent.com/63138398/225706659-4fa396f3-fc8a-4cdc-bbd4-3600b323db97.svg" alt="Logo" >
